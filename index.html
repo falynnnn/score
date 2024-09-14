@@ -1,17 +1,20 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
+<!-- saved from url=(0054)file:///C:/Users/aprod/OneDrive/Desktop/capitaine.html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Clash Royale Scoreboard</title>
     <style>
         body {
             margin: 0;
-            font-family: Arial, sans-serif;
+            font-family: 'Orbitron', sans-serif; /* Modern, sci-fi font */
             color: #fff;
-            background: #121212;
+            background: #0a0a0a;
             overflow: hidden;
+            position: relative;
         }
+
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap'); /* Import font */
 
         #contentloader {
             position: fixed;
@@ -19,28 +22,29 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.8);
+            background-color: rgba(0, 0, 0, 0.9);
             z-index: 1000;
             display: flex;
             justify-content: center;
             align-items: center;
-            transition: opacity 0.5s ease;
+            transition: opacity 0.5s ease, visibility 0.5s ease;
         }
 
         #loader {
-            font-size: 100px;
-            color: #ffcc00;
-            animation: LoaderSpin 1.5s infinite linear;
+            font-size: 80px;
+            color: #00ff99; /* Neon green */
+            text-shadow: 0 0 10px #00ff99, 0 0 20px #00ff99, 0 0 30px #00ff99, 0 0 40px #00ff99, 0 0 50px #00ff99;
+            animation: LoaderPulse 1s infinite alternate;
         }
 
-        @keyframes LoaderSpin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
+        @keyframes LoaderPulse {
+            0% { transform: scale(1); }
+            100% { transform: scale(1.1); }
         }
 
-        .hidden {
+        #contentloader.hidden {
             opacity: 0;
-            pointer-events: none;
+            visibility: hidden;
         }
 
         #header {
@@ -48,34 +52,53 @@
             top: 0;
             left: 0;
             width: 100%;
-            background: linear-gradient(135deg, #333, #111);
-            color: #fff;
-            padding: 10px 20px;
+            background: linear-gradient(135deg, #0a0a0a, #1c1c1c);
+            color: #00ff99;
+            padding: 20px;
             display: flex;
             justify-content: center;
             align-items: center;
-            box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.5);
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.7);
             z-index: 999;
+            border-bottom: 3px solid #00ff99; /* Neon border */
         }
 
         #header h1 {
             margin: 0;
-            font-size: 24px;
+            font-size: 32px;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.8);
         }
 
         #scoreboard {
             text-align: center;
-            margin-top: 80px; /* Adjust to move score towards the top */
+            margin-top: 100px; /* Adjust to move score towards the top */
+            background: rgba(0, 0, 0, 0.9); /* Same background as the body */
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        #scoreboard:hover {
+            transform: scale(1.02);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.7);
         }
 
         #scoreboard h2 {
-            font-size: 60px;
+            font-size: 90px;
             margin: 0;
-            color: #ffcc00;
+            color: #00ff99; /* Neon green */
+            text-shadow: 3px 3px 8px rgba(0, 0, 0, 0.8);
+            animation: ScoreGlow 1.5s infinite alternate;
+        }
+
+        @keyframes ScoreGlow {
+            0% { text-shadow: 3px 3px 8px rgba(0, 0, 0, 0.8); }
+            100% { text-shadow: 0 0 15px rgba(0, 255, 153, 0.7); }
         }
 
         #scoreboard p {
-            font-size: 24px;
+            font-size: 28px;
             color: #ddd;
             margin: 10px 0;
         }
@@ -89,23 +112,75 @@
             position: fixed;
             bottom: 0;
             width: 100%;
-            background: #222;
+            background: #1c1c1c;
             color: #aaa;
             padding: 10px;
             text-align: center;
-            box-shadow: 0px -2px 4px rgba(0, 0, 0, 0.5);
+            box-shadow: 0px -2px 4px rgba(0, 0, 0, 0.7);
         }
 
         iframe {
-            border: none;
+            border: 2px solid #00ff99; /* Neon green border */
+            border-radius: 12px; /* Rounded corners */
             width: 560px;
             height: 315px;
+        }
+
+        @media (max-width: 768px) {
+            #scoreboard h2 {
+                font-size: 60px;
+            }
+
+            #scoreboard p {
+                font-size: 22px;
+            }
+
+            iframe {
+                width: 100%;
+                height: auto;
+            }
+        }
+
+        #cat-left, #cat-right {
+            position: fixed;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 250px; /* Size of top GIFs */
+            height: auto;
+            z-index: 998;
+        }
+
+        #cat-left {
+            left: 0;
+            padding-left: 20px;
+        }
+
+        #cat-right {
+            right: 0;
+            padding-right: 20px;
+        }
+
+        #cat-left-bottom, #cat-right-bottom {
+            position: fixed;
+            width: 250px; /* Size of bottom GIFs */
+            height: auto;
+            z-index: 998;
+        }
+
+        #cat-left-bottom {
+            left: 0;
+            bottom: 20px; /* Adjusted position */
+        }
+
+        #cat-right-bottom {
+            right: 0;
+            bottom: 20px; /* Adjusted position */
         }
     </style>
 </head>
 <body>
-    <div id="contentloader">
-        <div id="loader">&#937;</div>
+    <div id="contentloader" class="hidden">
+        <div id="loader">✦</div> <!-- Stylish symbol as the loader -->
     </div>
 
     <div id="header">
@@ -113,21 +188,35 @@
     </div>
 
     <div id="scoreboard">
-        <h2 id="score">A.P: 13 - H.M: 6</h2>
+        <h2 id="score">A.P: 15 - H.M: 8</h2>
     </div>
 
     <div id="youtube-player">
-        <iframe src="https://www.youtube.com/watch?v=Zti2xxTYyiw" allowfullscreen></iframe>
+        <iframe src="./Clash Royale Scoreboard_files/Zti2xxTYyiw.html" allowfullscreen="" title="Clash Royale Video" aria-label="Clash Royale Video"></iframe>
     </div>
 
     <div id="footer">
         <!-- No additional text or links here -->
     </div>
 
+    <!-- Funny Cat GIFs -->
+    <img id="cat-left" src="./Clash Royale Scoreboard_files/1476454289-omg.gif" alt="Funny Cat Left">
+    <img id="cat-right" src="./Clash Royale Scoreboard_files/1476455504-nooo.gif" alt="Funny Cat Right">
+    <img id="cat-left-bottom" src="./Clash Royale Scoreboard_files/tenor.gif" alt="Funny Cat Bottom Left">
+    <img id="cat-right-bottom" src="./Clash Royale Scoreboard_files/tumblr_nbeifm567W1qbvovho1_500.gif" alt="Funny Cat Bottom Right">
+
     <script>
         window.addEventListener('load', function() {
             document.getElementById('contentloader').classList.add('hidden');
         });
+
+        function updateScore(ap, hm) {
+            document.getElementById('score').textContent = `A.P: ${ap} - H.M: ${hm}`;
+        }
+
+        // Example usage:
+        updateScore(15, 8);
     </script>
-</body>
-</html>
+
+
+</body></html>
