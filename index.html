@@ -139,42 +139,51 @@
                 width: 100%;
                 height: auto;
             }
+
+            #cat-left, #cat-right, #cat-left-bottom, #cat-right-bottom {
+                width: 200px; /* Adjust size of GIFs on mobile */
+                height: auto;
+                position: fixed;
+                z-index: 998;
+            }
+
+            #cat-left {
+                top: 20px;
+                right: 10px;
+            }
+
+            #cat-right {
+                top: 20px;
+                left: 10px;
+            }
+
+            #cat-left-bottom {
+                bottom: 20px;
+                left: 10px;
+            }
+
+            #cat-right-bottom {
+                bottom: 20px;
+                right: 10px;
+            }
         }
 
-        #cat-left, #cat-right {
-            position: fixed;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 250px; /* Size of top GIFs */
-            height: auto;
-            z-index: 998;
-        }
+        @media (max-width: 480px) {
+            #cat-left, #cat-right, #cat-left-bottom, #cat-right-bottom {
+                width: 150px; /* Further reduce size on very small screens */
+            }
 
-        #cat-left {
-            right: 0; /* Moved from left to right */
-            padding-right: 20px;
-        }
+            #header h1 {
+                font-size: 24px;
+            }
 
-        #cat-right {
-            left: 0;
-            padding-left: 20px;
-        }
+            #scoreboard h2 {
+                font-size: 50px;
+            }
 
-        #cat-left-bottom, #cat-right-bottom {
-            position: fixed;
-            width: 250px; /* Size of bottom GIFs */
-            height: auto;
-            z-index: 997; /* Ensures bottom GIF is behind top GIFs */
-        }
-
-        #cat-left-bottom {
-            left: 0;
-            bottom: 20px; /* Adjusted position */
-        }
-
-        #cat-right-bottom {
-            right: 0;
-            bottom: 20px; /* Adjusted position */
+            #scoreboard p {
+                font-size: 18px;
+            }
         }
     </style>
 </head>
