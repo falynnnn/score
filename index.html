@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<!-- saved from url=(0054)file:///C:/Users/aprod/OneDrive/Desktop/capitaine.html -->
-<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Clash Royale Scoreboard</title>
     <style>
@@ -164,7 +164,7 @@
             position: fixed;
             width: 250px; /* Size of bottom GIFs */
             height: auto;
-            z-index: 998;
+            z-index: 997; /* Ensures bottom GIF is behind top GIFs */
         }
 
         #cat-left-bottom {
@@ -179,7 +179,7 @@
     </style>
 </head>
 <body>
-    <div id="contentloader" class="hidden">
+    <div id="contentloader">
         <div id="loader">✦</div> <!-- Stylish symbol as the loader -->
     </div>
 
@@ -192,7 +192,7 @@
     </div>
 
     <div id="youtube-player">
-        <iframe src="./Clash Royale Scoreboard_files/Zti2xxTYyiw.html" allowfullscreen="" title="Clash Royale Video" aria-label="Clash Royale Video"></iframe>
+        <iframe src="https://www.youtube.com/embed/Zti2xxTYyiw" allowfullscreen title="Clash Royale Video" aria-label="Clash Royale Video"></iframe>
     </div>
 
     <div id="footer">
@@ -200,10 +200,10 @@
     </div>
 
     <!-- Funny Cat GIFs -->
-    <img id="cat-left" src="./Clash Royale Scoreboard_files/1476454289-omg.gif" alt="Funny Cat Left">
-    <img id="cat-right" src="./Clash Royale Scoreboard_files/1476455504-nooo.gif" alt="Funny Cat Right">
-    <img id="cat-left-bottom" src="./Clash Royale Scoreboard_files/tenor.gif" alt="Funny Cat Bottom Left">
-    <img id="cat-right-bottom" src="./Clash Royale Scoreboard_files/tumblr_nbeifm567W1qbvovho1_500.gif" alt="Funny Cat Bottom Right">
+    <img id="cat-left" src="https://hips.hearstapps.com/ell.h-cdn.co/assets/16/41/1476454289-omg.gif?resize=640:*" alt="Funny Cat Left">
+    <img id="cat-right" src="https://hips.hearstapps.com/ell.h-cdn.co/assets/16/41/1476455504-nooo.gif?resize=640:*" alt="Funny Cat Right">
+    <img id="cat-left-bottom" src="https://c.tenor.com/DbRUHnh1JfsAAAAd/tenor.gif" alt="Funny Cat Bottom Left">
+    <img id="cat-right-bottom" src="https://64.media.tumblr.com/21aeaee0abd0b924b8632ea0e97305fa/tumblr_nbeifm567W1qbvovho1_500.gifv" alt="Funny Cat Bottom Right">
 
     <script>
         window.addEventListener('load', function() {
@@ -217,6 +217,5 @@
         // Example usage:
         updateScore(15, 8);
     </script>
-
-
-</body></html>
+</body>
+</html>
